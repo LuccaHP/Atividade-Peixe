@@ -3,11 +3,16 @@ var config = {
     width: 800, 
     height: 600,
 
+    scale: {
+       mode: Phaser.Scale.FIT,
+       autoCenter: Phaser.Scale.CENTER_BOTH
+    },
     scene: {
         preload: preload,
         create: create,
         update: update
     }
+    
 };
 
 var game = new Phaser.Game(config);
@@ -27,7 +32,14 @@ function create () {
     this.add.image(750, 525, 'alga');
     this.add.image(50, 525, 'alga');
 
-    peixeGame =  this.add.image(400, 300, 'peixe');
+
+    //verifica tipo de dispositivo
+    if (game.device.os.desktop){
+        peixeGame = this.add.image(400, 300, 'peixe').setScale(3);
+    } else{
+        peixeGame = this.add.image(400, 300, 'peixe').setScale(0.5);
+    }
+    
     peixeGame.setFlip(true,false);
 }  
 
